@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    protected $toTruncate = ['posts', 'comments'];
     /**
      * Run the database seeds.
      *
@@ -11,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        foreach ($this->toTruncate as $table)
+        {
+            DB::table($table)->truncate();
+        }
+
+        $this->call(UserPostSeeder::class);
     }
 }

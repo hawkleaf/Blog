@@ -16,9 +16,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'id' => 1,
+        'name' => 'Joris Schelfhout',
+        'email' => 'hawkleaf@hotmail.com',
+        'password' => bcrypt('password'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph(30),
+        'user_id' => factory(App\User::class)->make()->id,
+        'published_at' => $faker->dateTime(),
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'body' => $faker->sentence,
+        'user_id' => factory(App\User::class)->make()->id,
+        'post_id' => rand(1,20)
     ];
 });

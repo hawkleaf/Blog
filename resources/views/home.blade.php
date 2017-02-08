@@ -2,12 +2,18 @@
 
 @section('content')
     <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">Dashboard</div>
+        @foreach($posts as $post)
+            <div class="panel panel-default">
 
-            <div class="panel-body">
-                You are logged in!
+                <div class="panel-heading">{{ $post->title }}</div>
+
+                <div class="panel-body">
+                    {{  $post->body }}
+                </div>
+
+                <div class="panel-footer">{{ $post->published_at->diffForHumans() }}</div>
+
             </div>
-        </div>
+        @endforeach
     </div>
 @endsection
