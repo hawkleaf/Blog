@@ -12076,6 +12076,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     mounted: function mounted() {
         console.log('Component mounted.');
+
+        axios.get('/api/user').then(function (response) {
+            console.log(response.data);
+        });
     }
 };
 
@@ -31621,7 +31625,7 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/joris/code/Blog/resources/assets/js/components/Example.vue"
+Component.options.__file = "/Users/Studio16/code/blog/resources/assets/js/components/Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31632,9 +31636,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a16f0478", Component.options)
+    hotAPI.createRecord("data-v-5e8d45e4", Component.options)
   } else {
-    hotAPI.reload("data-v-a16f0478", Component.options)
+    hotAPI.reload("data-v-5e8d45e4", Component.options)
   }
 })()}
 
@@ -31719,7 +31723,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a16f0478", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5e8d45e4", module.exports)
   }
 }
 
