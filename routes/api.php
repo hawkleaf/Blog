@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Posts Resource
+Route::group(['namespace' => 'Posts\Http\Controllers'], function() {
+    Route::get('/posts', 'PostController@index');
+    Route::get('/posts/{post}', 'PostController@show');
+    Route::post('/posts', 'PostController@store');
 });

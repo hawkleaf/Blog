@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Response;
 
 class ApiController extends Controller
 {
     protected $statusCode = 200;
     protected $payload;
 
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
         return $this;
-    }
-
-    public function getPayload()
-    {
-        return $this->payload;
     }
 
     public function setPayload($payload)
@@ -35,7 +26,7 @@ class ApiController extends Controller
     //Standard Response format for data
     public function respond($headers= [])
     {
-        return Response::json($this->payload, $this->getStatusCode(), $headers);
+        return Response::json($this->payload, $this->statusCode, $headers);
     }
 
     //Standard Response for absent data
@@ -49,14 +40,14 @@ class ApiController extends Controller
     {
         return $this->setPayload($message)->respond();
     }
-    
+
     //Standard Response for failed Operation
     public function respondWithError($message)
     {
         return $this->setPayload([
             'error' => [
                 'message' => $message,
-                'status_code' => $this->getStatusCode()
+                'status_code' => $this->statusCode
             ]
         ])->respond();
     }

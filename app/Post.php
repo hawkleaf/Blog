@@ -8,6 +8,8 @@ use App\User;
 
 class Post extends Model
 {
+    protected $fillable = ['title', 'body', 'published_at', 'user_id'];
+    
     public function comments()
     {
         return $this->hasMany(Comment::class);
