@@ -61,6 +61,9 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
+                                        @can('create posts')
+                                            <a href="{{ route('post.create') }}">Write post</a>
+                                        @endcan
                                     </li>
                                 </ul>
                             </li>

@@ -15,4 +15,12 @@ Route::get('/','HomeController@index');
 
 Auth::routes();
 
+
+//Profiles
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
+
+//Posts
+Route::group(['middleware' => 'can:create posts'], function () {
+    Route::get('/posts/create', 'PostController@create')->name('post.create');
+    Route::post('/posts', 'PostController@store')->name('post.store');
+});
