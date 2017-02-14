@@ -22,13 +22,18 @@ class UserAuthorizationSeeder extends Seeder
             'name' => 'Visitor'
         ]);
 
-        $author->permissions()->create([
-            'name' => 'create posts'
+        // $visitor->permissions()->createMany([
+        //     ['name' => 'm']
+        // ]);
+
+        $author->permissions()->createMany([
+            ['name' => 'manage posts'],
+            ['name' => 'delete posts']
         ]);
 
         $userId = factory(App\User::class)->make()->id;
         $user = User::find($userId);
 
-        $user->assignRole('Author');
+        $user->assignRole('Author', 'Visitor');
     }
 }

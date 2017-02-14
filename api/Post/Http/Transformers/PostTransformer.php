@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Posts\Http\Transformers;
+namespace Api\Post\Http\Transformers;
 
 class PostTransformer
 {

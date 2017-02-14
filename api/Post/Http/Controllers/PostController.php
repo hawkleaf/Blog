@@ -1,12 +1,13 @@
 <?php
 
-namespace Api\Posts\Http\Controllers;
+namespace Api\Post\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Api\ApiController;
 use App\Post;
-use Api\Posts\Http\Requests\PostRequest;
-use Api\Posts\Http\Transformers\PostTransformer;
+use Api\Post\Http\Requests\PostRequest;
+use Api\Post\Http\Transformers\PostTransformer;
+use Api\Post\Http\Transformers\PostCommentTransformer;
 
 class PostController extends ApiController
 {
@@ -34,5 +35,20 @@ class PostController extends ApiController
         ]);
 
         return $this->respondWithSuccess();
+    }
+
+    public function update(Post $post, PostRequest $request)
+    {
+        $this->authorize('owner', $post);
+
+        $post->body = $request->body;
+        $post->title = $request->title;
+
+        $post->save();
+    }
+
+    public function comments(Post $post, PostCommentTransformer $transformer)
+    {
+        return $this->setPayload($transformer->transform($post->load('comments.user')->comments))->respond();
     }
 }

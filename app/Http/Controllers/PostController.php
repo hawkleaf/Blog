@@ -16,7 +16,7 @@ class PostController extends Controller
     }
 
     public function store(PostRequest $request)
-    {   
+    {
         Post::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -24,5 +24,21 @@ class PostController extends Controller
             'published_at' => Carbon::now()
         ]);
         return redirect('/');
+    }
+
+    public function show(Post $post)
+    {
+        $post->load('comments.user');
+
+        return view('post.show', compact('post'));
+    }
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('owner', $post);
+
+        $post->delete();
+
+        return redirect()->route('post.index');
     }
 }
