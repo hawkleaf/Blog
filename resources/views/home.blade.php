@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <example></example>
     <div class="col-md-8 col-md-offset-2">
         @foreach($posts as $post)
             <div class="panel panel-default">

@@ -5,6 +5,15 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Write Post</div>
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     <div class="panel-body">
                         <form method="POST" action="{{ route('post.store') }}">
                             {{ csrf_field() }}
@@ -16,8 +25,12 @@
                                 <label for="body">Body</label>
                                 <textarea name="body" class="form-control" placeholder="Some interesting text" Required></textarea>
                             </div>
+                            <div class="input-group">
+                                <input type="hidden" name="published" value="false">
+                                <input type="checkbox" name="published" value="true"> Publish
+                            </div>
                             <button type="submit" class="btn btn-primary">
-                                Publish
+                                Create
                             </button>
                         </form>
                     </div>

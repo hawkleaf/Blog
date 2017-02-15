@@ -2,16 +2,36 @@
 
 namespace Api\Post\Http\Transformers;
 
-class PostTransformer
-{
+use League\Fractal\TransformerAbstract;
+use App\Post;
+use Api\Comment\Http\Transformers\CommentTransformer;
+use Api\User\Http\Transformers\UserTransformer;
 
-  public function transform($result)
-  {
-    return [
-      'title'     => $result->title,
-      'body'     => $result->body,
-      'published_at' => $result->published_at
-    ];
-  }
+class PostTransformer extends TransformerAbstract
+{
+    protected $availableIncludes = ['comments', 'user'];
+
+    public function transform(Post $post)
+    {
+        return [
+          'title'     => $post->title,
+          'body'     => $post->body,
+          'published_at' => $post->published_at
+        ];
+    }
+
+    public function includeComments(Post $post)
+    {
+        $comments = $post->comments;
+
+        return $this->collection($comments, new CommentTransformer);
+    }
+
+    public function includeUser(Post $post)
+    {
+        $user = $post->user;
+
+        return $this->item($user, new UserTransformer);
+    }
 
 }

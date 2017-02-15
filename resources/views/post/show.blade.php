@@ -11,14 +11,14 @@
                     <div class="panel-footer">
                         {{ $post->published_at->diffForHumans() }}
                         @can('manage posts')
-                            @if($post->user_id == Auth::user()->id)
+                            @can('owner', $post)
                                 <form method="POST" action="{{ route('post.destroy', $post->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                     <button class="btn btn-default pull-right" type="submit">Delete</button>
                                     <div class="clearfix"></div>
                                 </form>
-                            @endif
+                            @endcan
                         @endcan
                     </div>
                 </div>

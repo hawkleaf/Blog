@@ -15,3 +15,5 @@ Route::group(['middleware' => 'can:manage posts'], function () {
     Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');
 });
 Route::get('/posts/{post}', 'PostController@show')->name('post.show');
+
+Route::get('/dashboard', 'DashboardController@show')->name('dashboard.show')->middleware('can:manage posts');

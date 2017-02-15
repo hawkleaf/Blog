@@ -11,16 +11,17 @@ use Api\Post\Http\Transformers\PostCommentTransformer;
 
 class PostController extends ApiController
 {
-    public function index(PostTransformer $transformer)
+    public function index(PostTransformer $transformer, Request $request)
     {
-        $posts = Post::all()->map(function($post) use ($transformer){
-            return $transformer->transform($post);
-        });
-       return $this->setPayload($posts)->respond();
+        $posts = fractal()->collection(Post::all())->parseIncludes($request->include)->transformWith($transformer);
+
+        return $this->setPayload($posts)->respond();
     }
 
-    public function show(Post $post)
+    public function show(Post $post, PostTransformer $transformer, Request $request)
     {
+        $post = fractal()->item($post)->parseIncludes($request->include)->transformWith($transformer);
+
         return $this->setPayload($post)->respond();
     }
 
@@ -45,10 +46,5 @@ class PostController extends ApiController
         $post->title = $request->title;
 
         $post->save();
-    }
-
-    public function comments(Post $post, PostCommentTransformer $transformer)
-    {
-        return $this->setPayload($transformer->transform($post->load('comments.user')->comments))->respond();
     }
 }

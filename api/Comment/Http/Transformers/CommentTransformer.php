@@ -2,14 +2,25 @@
 
 namespace Api\Comment\Http\Transformers;
 
-class CommentTransformer
-{
+use League\Fractal\TransformerAbstract;
+use Api\User\Http\Transformers\UserTransformer;
+use App\Comment;
 
-  public function transform($result)
+class CommentTransformer extends TransformerAbstract
+{
+  protected $defaultIncludes = ['user'];
+
+  public function transform(Comment $comment)
   {
     return [
-        'body' => $result->body,
-        'user' => $result->user
+        'body' => $comment->body,
     ];
+  }
+
+  public function includeUser(Comment $comment)
+  {
+      $user = $comment->user;
+
+      return $this->item($user, new UserTransformer);
   }
 }

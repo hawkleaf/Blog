@@ -30,6 +30,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'body' => $faker->paragraph(30),
         'user_id' => factory(App\User::class)->make()->id,
         'published_at' => $faker->dateTime(),
+        'published' => ($faker->boolean) ? 'true' : 'false',
     ];
 });
 

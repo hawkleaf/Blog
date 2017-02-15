@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use Api\Posts\Http\Requests\PostRequest;
+use Api\Post\Http\Requests\PostRequest;
 use Carbon\Carbon;
 use Auth;
 
@@ -21,6 +21,7 @@ class PostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::user()->id,
+            'published' => $request->published,
             'published_at' => Carbon::now()
         ]);
         return redirect('/');

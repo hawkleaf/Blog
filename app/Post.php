@@ -20,4 +20,15 @@ class Post extends Model
     {
         return $this->belongsto(User::class);
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', 'true');
+    }
+
+
+    // public function create()
+    // {
+    //     Parent::
+    // }
 }
