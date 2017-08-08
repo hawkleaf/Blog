@@ -18,6 +18,17 @@ class CommentController extends ApiController
         return $this->setPayload($transformer->transform($comment))->respond();
     }
 
+    public function store(Post $post, CommentRequest $request, CommentTransformer $transformer)
+    {
+        $comment = Comment::create([
+            'post_id' => $post->id,
+            'user_id' => $request->user_id,
+            'body' => $request->body
+        ]);
+
+        return $this->setPayload($transformer->transform($comment))->respond();
+    }
+
     public function update(Post $post, Comment $comment, CommentRequest $request)
     {
         $comment->body = $request->body;

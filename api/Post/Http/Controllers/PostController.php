@@ -47,4 +47,13 @@ class PostController extends ApiController
 
         $post->save();
     }
+
+    public function destroy(Post $post)
+    {
+        $post->comments->delete();
+
+        $post->delete();
+
+        return $this->respondWithSuccess();
+    }
 }
