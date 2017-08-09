@@ -13,5 +13,10 @@ Route::group(['namespace' => 'Comment\Http\Controllers'], function() {
     Route::get('/posts/{post}/comments/{comment}', 'CommentController@show');
     Route::put('/posts/{post}/comments/{comment}', 'CommentController@update');
     Route::delete('/posts/{post}/comments/{comment}', 'CommentController@destroy');
+});
 
+Route::get('/seed', function() {
+ \Illuminate\Support\Facades\Artisan::call('db:seed');
+
+ return 'ok';
 });
