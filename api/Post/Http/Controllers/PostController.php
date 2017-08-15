@@ -50,7 +50,7 @@ class PostController extends ApiController
 
     public function destroy(Post $post)
     {
-        $post->comments->delete();
+        $post->comments->each->delete();
 
         $post->delete();
 
