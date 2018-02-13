@@ -1,12 +1,12 @@
 <?php
 
-Route::get('/','HomeController@index')->name('post.index');
+Route::get('/', 'HomeController@index')->name('post.index');
 
 Auth::routes();
 
 
 //Profiles
-Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
+// Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
 
 //Posts
 Route::group(['middleware' => 'can:manage posts'], function () {
