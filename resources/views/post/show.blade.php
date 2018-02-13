@@ -6,7 +6,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"> {{ $post->title }}</div>
                     <div class="panel-body">
-                        {{ $post->body }}
+                        {!! nl2br(e($post->body)) !!}
                     </div>
                     <div class="panel-footer">
                         {{ $post->published_at->diffForHumans() }}
@@ -24,18 +24,20 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            @foreach ($post->comments as $comment)
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">{{ $comment->user->name }}</div>
-                        <div class="panel-body">{{ $comment->body }}</div>
-                        <div class="panel-footer">
-                            {{ $comment->created_at->diffForHumans() }}
+        @if (env('ENABLE_COMMENTS', true))
+            <div class="column">
+                @foreach ($post->comments as $comment)
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{ $comment->user->name }}</div>
+                            <div class="panel-body">{{ $comment->body }}</div>
+                            <div class="panel-footer">
+                                {{ $comment->created_at->diffForHumans() }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 @endsection
