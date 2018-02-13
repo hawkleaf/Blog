@@ -8,7 +8,7 @@
                 <div class="panel-heading"><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></div>
 
                 <div class="panel-body">
-                    {{  $post->body }}
+                    {!! nl2br(e($post->body)) !!}
                 </div>
 
                 <div class="panel-footer">{{ $post->published_at->diffForHumans() }}</div>

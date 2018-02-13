@@ -8,7 +8,7 @@ use App\User;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'body', 'published_at', 'user_id'];
+    protected $fillable = ['title', 'body', 'published', 'published_at', 'user_id'];
     protected $dates = ['published_at'];
 
     public function comments()
