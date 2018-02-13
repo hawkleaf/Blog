@@ -9,16 +9,17 @@ use Api\User\Http\Transformers\UserTransformer;
 
 class PostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['comments', 'user'];
+    protected $availableIncludes = [];
 
     public function transform(Post $post)
     {
         return [
-
-            'id' => $post->id,
+          'id' => $post->id,
           'title'     => $post->title,
           'body'     => $post->body,
-          'published_at' => $post->published_at
+          'published_at' => $post->published_at,
+          'updated_at' => $post->updated_at,
+          'author' => $post->user->name
         ];
     }
 
@@ -35,5 +36,4 @@ class PostTransformer extends TransformerAbstract
 
         return $this->item($user, new UserTransformer);
     }
-
 }
