@@ -10,7 +10,7 @@
                     </div>
                     <div class="panel-footer">
                         {{ $post->published_at->diffForHumans() }}
-                        @can('manage posts')
+                        @hasrole('Author')
                             @can('owner', $post)
                                 <form method="POST" action="{{ route('post.destroy', $post->id) }}">
                                     {{ csrf_field() }}
