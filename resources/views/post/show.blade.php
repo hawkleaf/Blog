@@ -9,7 +9,7 @@
                         {!! nl2br(e($post->body)) !!}
                     </div>
                     <div class="panel-footer">
-                        {{ $post->published_at->diffForHumans() }}
+                        {{ $post->published_at->diffForHumans() }} ({{ $post->published_at->toFormattedDateString() }})
                         @hasrole('Author')
                             @can('owner', $post)
                                 <form method="POST" action="{{ route('post.destroy', $post->id) }}">
