@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="col-md-8 col-md-offset-2">
-    <span>test</span>
         @foreach($posts as $post)
             <div class="panel panel-default">
 
