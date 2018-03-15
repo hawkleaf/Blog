@@ -19,6 +19,9 @@
                                     <div class="clearfix"></div>
                                 </form>
                             @endcan
+                            <a href="/posts/{{ $post->id }}/edit">
+                                <button class="btn btn-default">Edit</button>
+                            </a>
                         @endcan
                     </div>
                 </div>
