@@ -25,10 +25,4 @@ class Post extends Model
     {
         return $query->where('published', 'true');
     }
-
-
-    // public function create()
-    // {
-    //     Parent::
-    // }
 }
