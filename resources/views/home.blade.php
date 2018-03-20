@@ -11,7 +11,7 @@
                     {!! nl2br(e($post->body)) !!}
                 </div>
 
-                <div class="panel-footer">{{ $post->published_at->diffForHumans() }}</div>
+                <div class="panel-footer">{{ $post->published_at->diffForHumans() }} ({{ $post->published_at->toFormattedDateString() }})</div>
 
             </div>
         @endforeach
