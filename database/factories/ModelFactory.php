@@ -17,9 +17,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'id' => 1,
-        'name' => 'Joris Schelfhout',
-        'email' => 'hawkleaf@hotmail.com',
-        'password' => bcrypt('password'),
+        'name' => 'John Doe',
+        'email' => 'admin@test.com',
+        'password' => bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
@@ -38,6 +38,6 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
         'body' => $faker->sentence,
         'user_id' => factory(App\User::class)->make()->id,
-        'post_id' => rand(1,20)
+        'post_id' => rand(1, 20)
     ];
 });
