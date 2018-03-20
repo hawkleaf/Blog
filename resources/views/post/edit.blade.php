@@ -15,7 +15,7 @@
                             </div>
                         @endif
                     <div class="panel-body">
-                        <form action="{{ route('post.update', $post->id) }}">
+                        <form action="{{ route('post.update', $post->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             <div class="form-group">
