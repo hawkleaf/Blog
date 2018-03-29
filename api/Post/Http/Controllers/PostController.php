@@ -27,7 +27,6 @@ class PostController extends ApiController
 
     public function store(PostRequest $request)
     {
-        //Auth::user()->posts()->create([
         Post::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -40,10 +39,7 @@ class PostController extends ApiController
 
     public function update(Post $post, PostRequest $request)
     {
-        $this->authorize('owner', $post);
-
-        $post->body = $request->body;
-        $post->title = $request->title;
+        $post->update($request->validated());
 
         $post->save();
     }
